@@ -23,14 +23,12 @@ What is the value of the first triangle number to have over five hundred divisor
 
 // loop through the triangular numbers
 
-// factor each one
-
 // count the factors (all of them, not just the prime ones)
 
 // stop when count > 500
 
-const countFactors = (n) => {
-  // brute force the number of factors of n
+const countDivisors = (n) => {
+  // return the number of divisors of n
   let count = 0;
   for (let i = 1; i <= n; i++) {
     if (n % i === 0) {
@@ -41,20 +39,21 @@ const countFactors = (n) => {
 };
 
 const triangular = (n) => {
+  // return the value of the nth triangular number
   return (n * (n + 1)) / 2;
 };
 
-const answer = () => {
+const initialSolution = () => {
+  // this function implements strategy 1 using a basic countFactors function.
+  // it is not sophisticated enough to do the problem in a reasonable runtime.
   let n = 1;
   let t = 1;
+  const numberOfDivisors = 500; // maximum 200 for fast runtime
 
-  while (countFactors(t) <= 5 && n < 10 ** 6) {
-    // limit to 1 million tries, for the moment
-    n++;
+  while (countDivisors(t) <= numberOfDivisors) {
     t = triangular(n);
+    n++;
   }
   console.log(t);
   return t;
 };
-
-answer();
