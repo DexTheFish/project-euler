@@ -42,3 +42,12 @@ const differentWaysToMake = (sum) => {
 };
 
 console.log(differentWaysToMake(200));
+
+// The above solution is clear but inelegant.
+// Loop parameters can be tightened to improve runtime but the code is hard to adapt to other coin systems.
+// below we develop a solution that is more efficient and adaptable to other currencies.
+
+const waysToMake = (coins, sum) => {
+  // coins is an array of coin values
+  // return the number of coin combinations that add to sum
+};
