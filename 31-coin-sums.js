@@ -41,10 +41,8 @@ const differentWaysToMake = (sum) => {
   return numberOfWays;
 };
 
-// console.log(differentWaysToMake(200));
-
 // The above solution is clear but inelegant.
-// Loop parameters can be tightened to improve runtime but the code is hard to adapt to other coin systems.
+// Loop parameters can be tightened to improve runtime significantly, but the code is hard to adapt to other coin systems.
 // below we develop a solution that is more efficient and adaptable to other currencies.
 
 const waysToMake = (coins, sum) => {
@@ -52,20 +50,17 @@ const waysToMake = (coins, sum) => {
   // return the number of coin combinations that add to sum
   let numberOfCombinations = 0;
 
-  if (coins.length === 1 || sum === 0) {
-    // if there's only one type of coin, we check whether its value divides the sum and return .
+  if (coins.length === 1) {
+    // if there's only one type of coin, then the sum can be made in at most one way, depending on divisibility.
     return sum % coins[0] === 0 ? 1 : 0;
-  } else {
-    for (let n = 0; n * coins[0] <= sum; n++) {
-      numberOfCombinations += waysToMake(coins.slice(1), sum - n * coins[0]);
-    }
-    // otherwise choose some number of coin[0] and recursively apply waysToMake to the remainder
-    // how many of coin[0] should we choose?
-    // loop over range(sum/coins[0])
-    // inside the loop we have decided on, say, j coins of denomination coins[0].
-    // therefore we need to make up (sum - j * coins[0]) using coin types OTHER THAN coins[0]
-    // RECURSION STEP: ?numberOfCombinations += waysToMake(coins[1..n], sum - j * coins[0])?
   }
+
+  for (let n = 0; n * coins[0] <= sum; n++) {
+    // if we choose to use n of coin[0], then the remainder must be made of other coins.
+    // count the number of ways to make the remainder, excluding the use of coins[0].
+    numberOfCombinations += waysToMake(coins.slice(1), sum - n * coins[0]);
+  }
+
   return numberOfCombinations;
 };
 
