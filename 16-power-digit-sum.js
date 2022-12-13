@@ -14,3 +14,7 @@ while (n > 1) {
 }
 
 console.log(sum);
+
+// the problem is that precision is lost when dealing with numbers larger than 2^53
+// the solution is to instead deal with BigInt https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt
+//
