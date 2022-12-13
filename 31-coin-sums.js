@@ -50,4 +50,17 @@ console.log(differentWaysToMake(200));
 const waysToMake = (coins, sum) => {
   // coins is an array of coin values
   // return the number of coin combinations that add to sum
+  let numberOfCombinations = 0;
+
+  if (coins.length === 1) {
+    // if there's only one type of coin, we check whether its value divides the sum
+    return sum % coins[0] === 0 ? 1 : 0;
+  } else {
+    // otherwise choose some number of coin[0] and recursively apply waysToMake to the remainder
+    // how many of coin[0] should we choose?
+    // loop over range(sum/coins[0])
+    // inside the loop we have decided on, say, j coins of denomination coins[0].
+    // therefore we need to make up (sum - j * coins[0]) using coin types OTHER THAN coins[0]
+    // RECURSION STEP: ?numberOfCombinations += waysToMake(coins[1..n], sum - j * coins[0])?
+  }
 };
