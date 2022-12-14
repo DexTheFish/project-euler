@@ -54,7 +54,6 @@ function nameValue(name) {
 
 function totalNameScores(arr) {
   arr = arr.sort();
-  console.log(arr);
   let scores = arr.map((val, index) => {
     return nameValue(val) * (index + 1);
   });
