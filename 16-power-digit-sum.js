@@ -38,5 +38,26 @@ const sumOfDigits = (n) => {
   return digitSum;
 };
 
+const estimateSumOfDigits = (n) => {
+  // assuming that the digits of 2 ** n are distributed randomly from 0 to 9, we can estimate:
+  // sum of digits = (number of digits) x (average digit value).
+  // the average digit value can be computed directly.
+  const digits = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+  const sumDigitValues = digits.reduce((prev, cur) => prev + cur);
+  const averageDigitValue = sumDigitValues / digits.length;
+  // the number of digits can be estimated by repeatedly dividing 2 ** n by 10 until the result
+  // is reduced to a single digit.
+  let numberOfDigits = 1;
+  let number = 2 ** n;
+  while (number > 10) {
+    number = number / 10;
+    numberOfDigits++;
+  }
+  return numberOfDigits * averageDigitValue;
+};
+
+console.log("----------- heuristic estimate: ---------------");
+console.log(estimateSumOfDigits(1000));
+
 console.log("------- sum of digits of 2 ** 1000: -----------");
 console.log(sumOfDigits(1000));
