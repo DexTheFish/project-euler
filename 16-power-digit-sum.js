@@ -61,3 +61,5 @@ console.log(estimateSumOfDigits(1000));
 
 console.log("------- sum of digits of 2 ** 1000: -----------");
 console.log(sumOfDigits(1000));
+
+// incredibly, the true answer (1366) is very close to the estimate (1359). They differ by only half a percentage. Recall the basis of our estimate was the assumption that the digits are randomly distributed. How remarkable that such a structured number as 2 ** n has a seemingly unstructured base-10 expansion!
