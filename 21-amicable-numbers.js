@@ -8,3 +8,9 @@ const d = (n) => {
   }
   return divisorCount;
 };
+
+const sumOfAmicableNumbers = (n) => {
+  // return the sum of amicable numbers less than n.
+  let sum = 0;
+  return sum;
+};
