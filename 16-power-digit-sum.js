@@ -62,4 +62,4 @@ console.log(estimateSumOfDigits(1000));
 console.log("------- sum of digits of 2 ** 1000: -----------");
 console.log(sumOfDigits(1000));
 
-// incredibly, the true answer (1366) is very close to the estimate (1359). They differ by only half a percentage. Recall the basis of our estimate was the assumption that the digits are randomly distributed. This is some evidence (certainly not conclusive) of a lack of structure to the base-ten representation of 2 ** n.
+// The true answer (1366) is very close to the estimate (1359). They differ by only half a percentage. Recall the basis of our estimate was the assumption that the digits are randomly distributed. This might suggest a lack of structure to the base-ten representation of 2 ** n.
