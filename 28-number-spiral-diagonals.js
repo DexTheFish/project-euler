@@ -11,3 +11,19 @@ It can be verified that the sum of the numbers on the diagonals is 101.
 
 What is the sum of the numbers on the diagonals in a 1001 by 1001 spiral formed in the same way?
 */
+
+let sum = 1;
+let currentNumber = 1;
+let increment = 2;
+while (increment <= 1000) {
+  currentNumber += increment;
+  sum += currentNumber;
+  currentNumber += increment;
+  sum += currentNumber;
+  currentNumber += increment;
+  sum += currentNumber;
+  currentNumber += increment;
+  sum += currentNumber;
+  increment += 2;
+}
+console.log(sum);
