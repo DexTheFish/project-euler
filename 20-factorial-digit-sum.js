@@ -18,11 +18,11 @@ const factorial = (n) => {
 const sumDigits = (n) => {
   let sum = 0;
   let num = n;
-  while (num >= 10) {
+  while (num >= 1) {
     sum += num % 10;
-    num = num / 10;
+    num = Math.floor(num / 10);
   }
   return sum;
 };
 
-console.log(sumDigits(factorial(100)));
+console.log(sumDigits(factorial(4)));

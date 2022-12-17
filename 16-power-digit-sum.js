@@ -46,7 +46,7 @@ const estimateSumOfDigits = (n) => {
   const sumDigitValues = digits.reduce((prev, cur) => prev + cur);
   const averageDigitValue = sumDigitValues / digits.length;
   // the number of digits can be estimated by repeatedly dividing 2 ** n by 10 until the result
-  // is reduced to a single digit.
+  // is reduced to a single digit. this only requires order-of-magnitude accuracy when dealing with large numbers.
   let numberOfDigits = 1;
   let number = 2 ** n;
   while (number > 10) {
