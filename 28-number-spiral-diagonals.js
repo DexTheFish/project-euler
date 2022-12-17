@@ -12,6 +12,9 @@ It can be verified that the sum of the numbers on the diagonals is 101.
 What is the sum of the numbers on the diagonals in a 1001 by 1001 spiral formed in the same way?
 */
 
+// notice that each radial layer of the square has exactly 4 diagonals, and their spacing (with respect to the spiral order) depends on the sidelength of the layer.
+// these observations allow for a very simple calculation.
+
 let sum = 1;
 let currentNumber = 1;
 let increment = 2;
