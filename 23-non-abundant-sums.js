@@ -29,4 +29,35 @@ const d = (n) => {
   return divisorSum;
 };
 
-const abundant = (n) => {};
+const abundant = (n) => {
+  // return an array of the positive abundant numbers up to n.
+  let abundantArr = [];
+  for (let i = 1; i <= n; i++) {
+    if (d(i) > i) {
+      abundantArr.push(i);
+    }
+  }
+  return abundantArr;
+};
+
+const pairSums = (array) => {
+  // return an array of all possible sums that can be formed from pairs of elements of the original array.
+  let result = [];
+  for (let i = 0; i < array.length; i++) {
+    for (let j = i; j < array.length; j++) {
+      let sum = array[i] + array[j];
+      result.push(sum);
+    }
+  }
+  return result.sort();
+};
+
+const answer = () => {
+  let sums = pairSums(abundant(28123)).filter(
+    (value, index, arr) => value <= 28123 && arr[index] !== arr[index - 1]
+  );
+  let sumsSum = sums.reduce((prev, cur) => prev + cur);
+  let totalSum = (28123 * (28123 + 1)) / 2;
+  let nonSumsSum = totalSum - sumsSum;
+  return nonSumsSum;
+};
