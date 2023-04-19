@@ -55,3 +55,17 @@ let date = {
     }
   }
 };
+
+while (date.year < 1901) {
+  date.increment();
+}
+
+let sundayCount = 0;
+
+while (date.year < 2001) {
+  if (date.day === 1 && date.weekday === 'Sunday') {
+    sundayCount++;
+  }
+  date.increment();
+}
+console.log(sundayCount);
