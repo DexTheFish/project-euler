@@ -47,3 +47,28 @@ const triangle = [
   [63, 66, 4, 68, 89, 53, 67, 30, 73, 16, 69, 87, 40, 31],
   [4, 62, 98, 27, 23, 9, 70, 98, 73, 93, 38, 53, 60, 4, 23]
 ];
+
+// given a 'position' in the triangle, we need a function to determine which 'step' to take next.
+
+function traverseTriangle(triangle) {
+  let paths = [[triangle[0][0], 0, 0]];
+  let pathSums = [];
+  while (paths.length > 0) {
+    let path = paths.pop();
+    let sum = path[0];
+    let i = path[1];
+    let j = path[2];
+    let left = [sum + triangle[i+1][j], i+1, j];
+    let right = [sum + triangle[i+1][j+1], i+1, j+1];
+    if (left[1] < triangle.length - 1) {
+      paths.push(left);
+      paths.push(right);
+    } else {
+      pathSums.push(left[0]);
+      pathSums.push(right[0]);
+    }
+  }
+  return Math.max(...pathSums);
+}
+
+console.log(traverseTriangle(triangle));
