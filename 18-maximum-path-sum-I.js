@@ -58,8 +58,8 @@ function traverseTriangle(triangle) {
     let sum = path[0];
     let i = path[1];
     let j = path[2];
-    let left = [sum + triangle[i+1][j], i+1, j];
-    let right = [sum + triangle[i+1][j+1], i+1, j+1];
+    let left = [sum + triangle[i + 1][j], i + 1, j];
+    let right = [sum + triangle[i + 1][j + 1], i + 1, j + 1];
     if (left[1] < triangle.length - 1) {
       paths.push(left);
       paths.push(right);
