@@ -16,10 +16,69 @@ HINT: Some products can be obtained in more than one way so be sure to only incl
   // sum the set of products
 
 // mathematical observations:
-  // the two factors cannot have an odd number (say, 3) and a 5 in the ones places, since ****3 X ***5 = ******5 which uses 5 twice.
-   // the product ends in a 5 iff one of the factors ends in a 5.
+
+  // consider the relationship between the number of digits of the factors and product. The product of an n-digit and m-digit has either (n + m) or (n + m - 1) digits. Let p be the number of digits in the product. By solving the linear system
+      // n + m + p = 9
+      // p <= n + m
+      // p >= n + m - 1
+  // we see that any pandigital product relationship must involve a 2-digit and 3-digit factor multiplying to give a 4-digit product, or a 1-digit and 4-digit number multiplying to give a 4-digit number.
+
+  // this leads to the following simplified algorithm:
+
+    // 1. choose a sequence of two digits to form the first factor A.
+    // 2. choose a sequence of three of the remaining digits to form the second factor B.
+    // 3. use the remaining four digits to form the product C.
+    // 4. check whether the relation A x B = C is true.
+
+  // notice that 10 x 100 = 1000 whereas 90 x 900 = 81000. If the product of the first digits of the factors is at least 10, then the overall product will be at least 10 000, which has 5 digits. 
+
+function hasUniqueDigits(num) {
+  let digits;
+  if (Array.isArray(num)) {
+    digits = num.reduce((prev, cur) => prev + String(cur), '');
+  }
+  if (typeof num === 'number') {
+    digits = String(num);
+  }
+  const digitsArr = digits.split('');
+  return (digitsArr.length === new Set(digitsArr).size) && !digitsArr.includes('0');
+}
+
+let numsUpTo100 = new Array(100).fill(0).map((x, i) => i + 1);
+// let twoDigitFactors = numsUpTo100.filter(x => hasUniqueDigits(x));
+let numsUpTo1000 = new Array(1000).fill(0).map((x, i) => i + 1);
+// let threeDigitFactors = numsUpTo1000.filter(x => hasUniqueDigits(x));
 
 
 
+let products = [];
+let factorsAndProducts = [];
+for (let x of numsUpTo100) {
+  for (let y of numsUpTo1000) {
+    let z = x * y;
+    if (hasUniqueDigits([x, y, z]) && String(x).length + String(y).length + String(z).length === 9) {
+      products.push(z);
+      factorsAndProducts.push([x, y, z]);
+    }
+  }
+}
+console.log("products:   ", Array.from(new Set(products)));
+console.log('factors and products:   ', factorsAndProducts);
+console.log(Array.from(new Set(products)).reduce((prev, cur) => prev + cur));
 
 
+console.log('~~~~~~~~')
+console.log(hasUniqueDigits([1, 2, 3, 45, 46]))
+console.log()
+console.log()
+
+let oneByFourProducts = [];
+for (let x = 1; x < 10; x++) {
+  for (let y = 1000; y < 10000; y++) {
+    let z = x * y;
+    if (hasUniqueDigits([x, y, z]) && String(x).length + String(y).length + String(z).length === 9) {
+      oneByFourProducts.push(z);
+    }
+  }
+}
+console.log(oneByFourProducts);
