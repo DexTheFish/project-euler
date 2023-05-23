@@ -21,6 +21,19 @@ Note: As 1! = 1 and 2! = 2 are not sums they are not included.
 //  f'(x) = (xlog10*10**x - 10**x) / x**2 = 10**x(xlog10 - 1) / x**2
 // since x > 1 > 1/log10, the numerator is positive. Therefore f'(x) > 0, so f is increasing for x > 1. We test some values to find the threshold where f(x) > 10 * 9!.
 
+
+let n =1;
+while (10 ** n / n <= 3628800) {
+  console.log(n, Math.ceil(10**n / n));
+  n++;
+}
+
+// we see that if a number has 8 or more digits, then it cannot equal the sum of factorials of its digits. 
+
+
+// therefore we loop up to 7-digit numbers (excluding 1 and 2, as per the problem description).
+
+
 function factorial(n) {
   if (n === 1 || n === 0) {
     return 1;
@@ -29,17 +42,6 @@ function factorial(n) {
 }
 
 
-
-
-let n =1;
-while (10 ** n / n <= 3628800) {
-  console.log(n, 10**n / n);
-  n++;
-}
-
-// we see that if a number has 8 or more digits, then it cannot equal the sum of factorials of its digits. 
-
-// therefore we loop up to 7-digit numbers.
 let sum = 0;
 for (let i = 3; i < 10**7; i++) {
   const digitsArr = String(i).split('');
@@ -50,10 +52,3 @@ for (let i = 3; i < 10**7; i++) {
 }
 
 console.log('total', sum);
-
-console.log('~~~~~~~~')
-console.log(factorial(4));
-let x = ['5'];
-let y = x.reduce((prev, cur) => Number(prev) + factorial(Number(cur)), 0); //output 5
-console.log(y);
-console.log(factorial(5)); // output 120
