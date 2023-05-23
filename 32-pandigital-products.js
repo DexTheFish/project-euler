@@ -29,8 +29,9 @@ HINT: Some products can be obtained in more than one way so be sure to only incl
     // 2. choose a sequence of three of the remaining digits to form the second factor B.
     // 3. use the remaining four digits to form the product C.
     // 4. check whether the relation A x B = C is true.
+    // 5. repeat the algorithm for the case (1 digit) x (4 digit) = (4 digit).
 
-  // notice that 10 x 100 = 1000 whereas 90 x 900 = 81000. If the product of the first digits of the factors is at least 10, then the overall product will be at least 10 000, which has 5 digits. 
+  // notice that 10 x 100 = 1000 whereas 90 x 900 = 81000. If the product of the first digits of the factors is at least 10, then the overall product will be at least 10 000, which has 5 digits. This observation could be used to reduce the number of cases that are checked; however, it is already very fast to double-loop over all combinations of 2 and 3-digit numbers.
 
 function hasUniqueDigits(num) {
   let digits;
@@ -45,11 +46,7 @@ function hasUniqueDigits(num) {
 }
 
 let numsUpTo100 = new Array(100).fill(0).map((x, i) => i + 1);
-// let twoDigitFactors = numsUpTo100.filter(x => hasUniqueDigits(x));
 let numsUpTo1000 = new Array(1000).fill(0).map((x, i) => i + 1);
-// let threeDigitFactors = numsUpTo1000.filter(x => hasUniqueDigits(x));
-
-
 
 let products = [];
 let factorsAndProducts = [];
@@ -64,13 +61,8 @@ for (let x of numsUpTo100) {
 }
 console.log("products:   ", Array.from(new Set(products)));
 console.log('factors and products:   ', factorsAndProducts);
-console.log(Array.from(new Set(products)).reduce((prev, cur) => prev + cur));
-
-
+console.log('sum of products:  ', Array.from(new Set(products)).reduce((prev, cur) => prev + cur));
 console.log('~~~~~~~~')
-console.log(hasUniqueDigits([1, 2, 3, 45, 46]))
-console.log()
-console.log()
 
 let oneByFourProducts = [];
 for (let x = 1; x < 10; x++) {
@@ -81,4 +73,4 @@ for (let x = 1; x < 10; x++) {
     }
   }
 }
-console.log(oneByFourProducts);
+console.log('one-by-four products:   ', oneByFourProducts);
