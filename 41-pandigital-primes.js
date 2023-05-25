@@ -50,8 +50,22 @@ function isPrime(n) {
   return true;
 }
 
-let candidate = 765432;
-while (!hasUniqueDigits(candidate) || !isPrime(candidate)) {
+function isPandigital(n) {
+  if (!hasUniqueDigits(n)) {
+    return false;
+  }
+  const digits = String(n).split('');
+  const length = digits.length;
+  for (let i = 1; i <= length; i++) {
+    if (!digits.includes(String(i))) {
+      return false;
+    }
+  }
+  return true;
+}
+
+let candidate = 7654321;
+while ((!isPandigital(candidate) || !isPrime(candidate)) && candidate > 0) {
   candidate--;
 }
 console.log(candidate);
