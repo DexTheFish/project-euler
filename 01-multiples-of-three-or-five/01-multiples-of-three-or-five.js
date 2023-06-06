@@ -18,6 +18,7 @@ const sumOfMultiples = (n) => {
   return sum;
 };
 const answer = sumOfMultiples(1000);
+console.log(answer);
 
 // ---------------------------------------------------
 
