@@ -12,6 +12,7 @@ Find the pair of pentagonal numbers, P_j and P_k, for which their sum and differ
 # if x > 0 is pentagonal, then for some integer n > 0 we can write
 #    n = (1 + sqrt(1 + 24x)) / 6
 # it follows that sqrt(1 + 24x) is an integer, or in other words 1 + 24x is a square number.
+# this precondition allows us to significantly reduce the number of cases considered
 
 
 def P(n):
@@ -23,10 +24,6 @@ def isSquare(n):
     return sqrt ** 2 == n
 
 
-D = float('inf')
-
-# loop over pairs i, j and check whether P_i and P_j adhere to the conditions
-
 limit = 5000
 for i in range(1, limit):
     for j in range(i, limit):
@@ -37,4 +34,4 @@ for i in range(1, limit):
             y = 1 + 24 * dif
             if isSquare(y):
                 if (1 + math.isqrt(x)) % 6 == 0 and (1 + math.isqrt(y)) % 6 == 0:
-                    print(dif, 'test1')
+                    print(dif)
